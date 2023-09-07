@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>User List</title>
+    <style>
+        /* Увеличиваем шрифт */
+        body {
+            font-size: 18px;
+        }
+
+        table {
+            font-size: 18px;
+        }
+
+        th {
+            padding-left: 20px;
+            padding-right: 20px;
+        }
+
+        td {
+            padding-left: 20px;
+            padding-right: 20px;
+            font-size: 20px;
+        }
+    </style>
+</head>
+<body>
+<h1>Список пользователей</h1>
+<table>
+    <tr>
+        <th style = "color:blue">ID</th>
+        <th>Имя</th>
+        <th>Фамилия</th>
+        <th>Полных лет</th>
+        <th style="font-size: 22px; color: dimgray">Действие</th>
+    </tr>
+
+    <tr th:each="user : ${users}">
+        <th style = "color:blue; font-size: 18px" th:text="${user.id}"></th>
+        <td th:text="${user.name}"></td>
+        <td th:text="${user.lastName}"></td>
+        <td th:text="${user.age}"></td>
+        <td>
+
+
+            <!-- Кнопка Edit -->
+            <a th:href="@{/users/edit/{id}(id=${user.id})}">
+                <button style="font-size: 18px; padding: 10px 20px; color: darkblue">Редактировать</button>
+            </a>
+            <!-- Кнопка Delete -->
+            <a th:href="@{/users/delete/{id}(id=${user.id})}">
+                <button style="font-size: 18px; padding: 10px 20px; color: red">Удалить</button>
+            </a>
+
+
+            <!--            <a th:href="@{/users/edit/{id}(id=${user.id})}">Edit</a>-->
+<!--            <a th:href="@{/users/delete/{id}(id=${user.id})}">Delete</a>-->
+        </td>
+    </tr>
+</table>
+<a href="/users/add">
+    <button style="font-size: 18px; padding: 12px 6px;  color: blue;">Добавить пользователя</button>
+</a>
+</body>
+</html>
+
+
